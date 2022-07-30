@@ -115,7 +115,35 @@ router.post('/profileimg', auth , upload.single('img'),async (req, res)=>{
 })
 
 
+router.delete('/logout', auth , async (req, res) => {
+    try {
+        req.reporter.tokens = req.reporter.tokens.filter((token) =>{
+            return token !== req.token
+        })
 
+         await req.reporter.save()
+         res.status(200).send()
+
+    }
+    catch(e){
+res.status(500).send(e)
+    }
+})
+
+
+//////////////////// logout all
+
+router.delete('/logoutall',auth, async (req, res)=>{
+    try{
+        req.reporter.tokens =[]
+        await req.reporter.save()
+        res.status(200).send()
+    }
+    catch(e){
+        res.status(500).send(e)
+    }
+
+})
 
 
 

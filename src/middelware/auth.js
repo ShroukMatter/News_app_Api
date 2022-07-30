@@ -13,6 +13,7 @@ const auth  = async(req, res, next) => {
             throw new Error()
         }
         req.reporter = reporter
+        req.token = token
         next()
 
     }

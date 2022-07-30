@@ -106,7 +106,6 @@ reporterSchema.statics.findByCredentials = async (email, password) => {
 
 
 reporterSchema.methods.toJSON = function(){
-    console.log('hello')
     const reporter = this 
     const reporterObject = reporter.toObject()
     delete reporterObject.password
